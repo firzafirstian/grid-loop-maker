@@ -19,7 +19,7 @@ function updateCanvasSize() {
     if (!isAnimating && !isRecording) drawFrameWithPhase(currentPhase);
 }
 
-// FUNGSI MENGGAMBAR ANTI-FLICKERING
+// FUNGSI MENGGAMBAR ANTI-FLICKERING & ANTI-TERPOTONG
 function drawGrid(shiftX, shiftY) {
     const bgColor = document.getElementById('colorBg').value;
     const lineColor = document.getElementById('colorLine').value;
@@ -28,18 +28,14 @@ function drawGrid(shiftX, shiftY) {
     const showH = document.getElementById('showHorizontal').checked;
     const showV = document.getElementById('showVertical').checked;
 
-    // Bersihkan layar
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
     
-    // Trik Pixel Snapping: Membulatkan koordinat pergerakan (Mencegah flickering)
     let snapX = Math.round(shiftX);
     let snapY = Math.round(shiftY);
     
-    // Trik Garis Tipis (1px, 3px): Canvas menempatkan garis di tengah piksel, 
-    // jika ukurannya ganjil, kita harus geser 0.5px agar warnanya tajam pekat.
     const sharpOffset = (lineWidth % 2 === 0) ? 0 : 0.5;
     ctx.translate(snapX + sharpOffset, snapY + sharpOffset); 
     
@@ -47,17 +43,23 @@ function drawGrid(shiftX, shiftY) {
     ctx.lineWidth = lineWidth;
     ctx.beginPath();
 
+    // PERBAIKAN: Margin aman diperbesar menjadi 4x lipat ukuran grid
+    // Ini menjamin garis tidak akan pernah terpotong saat digeser ke arah mana pun
+    const safeMargin = size * 4;
+
     if (showV) {
-        for (let x = -size; x <= canvas.width + size * 2; x += size) {
-            ctx.moveTo(x, -size);
-            ctx.lineTo(x, canvas.height + size * 2);
+        for (let x = -safeMargin; x <= canvas.width + safeMargin; x += size) {
+            // Tarik garis jauh dari atas (-safeMargin) ke sangat bawah
+            ctx.moveTo(x, -safeMargin);
+            ctx.lineTo(x, canvas.height + safeMargin);
         }
     }
 
     if (showH) {
-        for (let y = -size; y <= canvas.height + size * 2; y += size) {
-            ctx.moveTo(-size, y);
-            ctx.lineTo(canvas.width + size * 2, y);
+        for (let y = -safeMargin; y <= canvas.height + safeMargin; y += size) {
+            // Tarik garis jauh dari kiri (-safeMargin) ke sangat kanan
+            ctx.moveTo(-safeMargin, y);
+            ctx.lineTo(canvas.width + safeMargin, y);
         }
     }
 
