@@ -283,19 +283,24 @@ input:checked + .slider-toggle:before { transform: translateX(18px); }
         overflow-y: visible; /* Menonaktifkan scroll di dalam kolom */
     }
 
-    /* Trik UX: Memaksa Canvas Preview tampil di paling ATAS pada layar HP */
-    .center-panel {
-        order: -1; 
-        min-height: 45vh;
-        padding: 20px;
-    }
+    /* Trik UX: Memaksa Canvas Preview tampil di atas dan TERKUNCI (Sticky) */
+	.center-panel {
+		order: -1; 
+		padding: 15px;
+		position: sticky;
+		top: 0; 
+		z-index: 100; 
+		background-color: #0d1117; 
+		border-bottom: 1px solid #30363d;
+		box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+	}
 
-    /* Memastikan kanvas mengisi layar dengan proporsional */
-    canvas {
-        max-height: 50vh;
-        width: 100%;
-        object-fit: contain;
-    }
+	/* Sedikit mengecilkan kanvas di HP agar menyisakan ruang untuk melihat slider */
+	canvas {
+		max-height: 40vh;
+		width: 100%;
+		object-fit: contain;
+	}
 
     .left-panel, .right-panel {
         padding: 20px 15px;
