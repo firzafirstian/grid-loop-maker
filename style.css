@@ -200,6 +200,7 @@ input:checked + .slider-toggle:before { transform: translateX(18px); }
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s;
+	margin-top: 30px;
 }
 .btn-render:hover {
     background-color: #ff6b81;
