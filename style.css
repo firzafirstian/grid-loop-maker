@@ -259,3 +259,45 @@ input:checked + .slider-toggle:before { transform: translateX(18px); }
     font-size: 0.85rem;
     font-weight: 400;
 }
+
+/* =========================================
+   RESPONSIVE DESIGN UNTUK MOBILE & TABLET
+   ========================================= */
+@media screen and (max-width: 900px) {
+    body {
+        overflow-y: auto; /* Mengaktifkan scroll vertikal di HP */
+        height: auto;
+    }
+
+    .app-wrapper {
+        display: flex; /* Mengubah grid menyamping menjadi tumpukan vertikal */
+        flex-direction: column;
+        height: auto;
+    }
+
+    .panel {
+        width: 100%;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #30363d;
+        overflow-y: visible; /* Menonaktifkan scroll di dalam kolom */
+    }
+
+    /* Trik UX: Memaksa Canvas Preview tampil di paling ATAS pada layar HP */
+    .center-panel {
+        order: -1; 
+        min-height: 45vh;
+        padding: 20px;
+    }
+
+    /* Memastikan kanvas mengisi layar dengan proporsional */
+    canvas {
+        max-height: 50vh;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .left-panel, .right-panel {
+        padding: 20px 15px;
+    }
+}
