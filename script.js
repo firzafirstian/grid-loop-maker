@@ -196,7 +196,7 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
         codec: 'avc1.640028', // H.264 High Profile
         width: canvas.width,
         height: canvas.height,
-        bitrate: 10_000_000, // 10 Mbps untuk gambar yang sangat jernih
+        bitrate: 30_000_000, // 10 Mbps untuk gambar yang sangat jernih
         framerate: fps,
     });
 
@@ -249,7 +249,7 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
         // Konversi Canvas ke Video Frame dan masukkan ke Encoder
         let timestampMicroseconds = (frameCount * 1000000) / fps;
         let frame = new VideoFrame(canvas, { timestamp: timestampMicroseconds });
-        videoEncoder.encode(frame, { keyFrame: frameCount % fps === 0 });
+        videoEncoder.encode(frame, { keyFrame: frameCount % 4 === 0 });
         frame.close(); // Kosongkan memori frame
 
         frameCount++;
