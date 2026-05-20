@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Grid Loop Maker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/mp4-muxer/build/mp4-muxer.js"></script>
+</head>
+<body>
+    <div class="app-wrapper">
+        <aside class="panel left-panel">
+            <h2>Tools </h2>
+            
+            <div class="control-group mt-2">
+                <label> Background (Color 1)</label>
+                <div class="color-box">
+                    <input type="color" id="colorBg" value="#ffffff">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label> Grid Line (Color 2)</label>
+                <div class="color-box">
+                    <input type="color" id="colorLine" value="#000000">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label> Canvas Orientation</label>
+                <select id="canvasOrientation" class="dark-input">
+                    <option value="vertical">Vertical (9:16)</option>
+                    <option value="horizontal" selected>Horizontal (16:9)</option>
+                </select>
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="togglePreview">
+                    <span class="slider-toggle round"></span>
+                </label>
+                <span class="toggle-label"> Animation Preview</span>
+            </div>
+
+            <button id="downloadBtn" class="btn-render">📥 Render HD MP4</button>
+        </aside>
+
+        <main class="panel center-panel">
+            <h2>Canvas Preview</h2>
+            <div class="canvas-container">
+                <canvas id="gridCanvas"></canvas>
+            </div>
+			<div class="footer">
+                <hr>
+                <p>Copyright 2026 by Firza Firstian WJ</p>
+            </div>
+        </main>
+
+        <aside class="panel right-panel">
+            <h2>Animation Settings</h2>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>Grid Size</label>
+                    <span id="sizeVal" class="val">60</span>
+                </div>
+                <div class="range-wrapper">
+                    <button class="step-btn" data-target="gridSize" data-step="-1">−</button>
+                    <input type="range" id="gridSize" min="10" max="200" value="60" class="red-slider">
+                    <button class="step-btn" data-target="gridSize" data-step="1">+</button>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>Line Thickness</label>
+                    <span id="widthVal" class="val">1</span>
+                </div>
+                <div class="range-wrapper">
+                    <button class="step-btn" data-target="lineWidth" data-step="-1">−</button>
+                    <input type="range" id="lineWidth" min="1" max="20" value="1" class="red-slider">
+                    <button class="step-btn" data-target="lineWidth" data-step="1">+</button>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-header">
+                    <label>Animation Speed</label>
+                    <span id="speedVal" class="val">5</span>
+                </div>
+                <div class="range-wrapper">
+                    <button class="step-btn" data-target="animSpeed" data-step="-1">−</button>
+                    <input type="range" id="animSpeed" min="1" max="20" value="5" class="red-slider">
+                    <button class="step-btn" data-target="animSpeed" data-step="1">+</button>
+                </div>
+            </div>
+
+            <div class="control-group mt-2">
+                <label>Direction</label>
+                <select id="animDirection" class="dark-input">
+                    <option value="up">Atas</option>
+                    <option value="top-right">45° Kanan Atas</option>
+                    <option value="right">Kanan</option>
+                    <option value="bottom-right" selected>45° Kanan Bawah</option>
+                    <option value="bottom">Bawah</option>
+                    <option value="bottom-left">45° Kiri Bawah</option>
+                    <option value="left">Kiri</option>
+                    <option value="top-left">45° Kiri Atas</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group mt-2">
+                <label class="custom-check">
+                    <input type="checkbox" id="showHorizontal" checked> Horizontal Lines
+                </label>
+                <label class="custom-check">
+                    <input type="checkbox" id="showVertical" checked> Vertical Lines
+                </label>
+            </div>
+        </aside>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
