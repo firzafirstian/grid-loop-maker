@@ -157,7 +157,7 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
 
     isRecording = true;
     const btn = document.getElementById('downloadBtn');
-    btn.innerText = '⏳ Menyusun MP4 (Mohon Tunggu)...';
+    btn.innerText = '⏳ Rendering (Please Wait)...';
     btn.style.backgroundColor = '#f39c12';
     btn.disabled = true;
 
